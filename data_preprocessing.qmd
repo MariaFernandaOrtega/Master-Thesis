@@ -1,0 +1,960 @@
+---
+title: "Thesis"
+format:
+  pdf:
+    toc: true
+    documentclass: scrartcl
+    papersize: letter
+    execute:
+    echo: false
+    warning: false
+---
+
+# Data
+
+## Transparency international
+
+### Perception Index data (2012-2023)
+
+```{r}
+library(openxlsx) 
+library(writexl) 
+library(haven) 
+library(magrittr) 
+library(readr) 
+library(naniar) 
+library(ggplot2) 
+library(Hmisc) 
+library(purrr) 
+library(Rmisc)
+library(data.table) 
+library(dplyr) 
+library(hrbrthemes) 
+library(haven) 
+library(gtExtras) 
+library(kableExtra) 
+library(gt) 
+library(readxl) 
+library(tidyverse)
+library(scales)
+```
+
+```{r}
+perception_data<-read_xlsx("./data/CPI2023_Global_Results__Trends.xlsx", sheet = 2)
+
+
+```
+
+```{r}
+
+# Set the column names of df to the values in the 4th row
+colnames(perception_data) <- as.character(perception_data[3, ])
+
+# Remove the first 4 rows to delete everything above and including the original 4th row
+perception_data <- perception_data[-(1:3), ]
+
+```
+
+## WJP
+
+### Absence of corruption (2012-2023)
+
+Factor 2
+
+```{r}
+absence_corrup_data<- read_xlsx("./data/2023_wjp_rule_of_law_index_HISTORICAL_DATA.xlsx", sheet = 12)
+
+```
+
+### Fundamental Rights (2012-2023)
+
+Factor 4
+
+```{r}
+fundamental_rights_data<- read_xlsx("./data/2023_wjp_rule_of_law_index_HISTORICAL_DATA.xlsx", sheet = 12)
+```
+
+### Regulatory Enforcement (2012-2023)
+
+Factor 6
+
+```{r}
+regulatory_enforcement_data<- read_xlsx("./data/2023_wjp_rule_of_law_index_HISTORICAL_DATA.xlsx", sheet = 12)
+```
+
+## United Nations
+
+Office on Drugs and Crime (UNODC)
+
+### Corruption: bribes and other types (2013-2021)
+
+```{r}
+corruption_UN<-read_xlsx("./data/data_cts_corruption_and_economic_crime (2).xlsx")
+
+# Set the column names of df to the values in the 4th row
+colnames(corruption_UN) <- as.character(corruption_UN[2, ])
+corruption_UN <- corruption_UN[-(1:2), ]
+```
+
+### Bribery prevalence (2012-2021)
+
+```{r}
+
+bribery_prevalence<-read.csv("./data/bribery-prevalence-un.csv")
+```
+
+### GDP spend in Education (2000-2022)
+
+```{r}
+spend_education<-read.csv("./data/total-government-expenditure-on-education-gdp.csv")
+```
+
+### Human development Index
+
+```{r}
+human_index<-read.csv("./data/human-development-index.csv")
+
+human_index_22<-read_xlsx('./data/HDR23-24_Statistical_Annex_HDI_Trends_Table.xlsx')
+
+colnames(human_index_22) <- as.character(human_index_22[4, ])
+human_index_22<- human_index_22[-(1:5), ]
+```
+
+## The Varieties of Democracy (V-Dem) project (2000-2022)
+
+### Corruption in politics and more
+
+```{r}
+corruption_politics_data <- read_xlsx('./data/qogdata_05_03_2024.xlsx')
+
+
+```
+
+```{r}
+corruption_v_dem<-read.csv("./data/V-Dem-CY-Full+Others-v14.csv")
+```
+
+### Judicial constrains in executive (2000-2022)
+
+```{r}
+
+judicial_executive<-read.csv("./data/judicial-constraints-on-the-executive-index.csv")
+
+```
+
+### **Other independent variables**
+
+```{r}
+other_v_dem<-read.csv("./data/V-Dem-CY-Full+Others-v14.csv")
+
+
+```
+
+## World Bank
+
+### Economic growth
+
+```{r}
+eco_growth_data <- read_xls('./data/API_NY.GDP.MKTP.KD.ZG_DS2_en_excel_v2_27.xls')
+
+colnames(eco_growth_data) <- as.character(eco_growth_data[3, ])
+eco_growth_data <- eco_growth_data[-(1:3), ]
+
+
+```
+
+```{r}
+gdp_percapita_data<- read_xls('./data/API_NY.GDP.PCAP.PP.CD_DS2_en_excel_v2_84017.xls')
+colnames(gdp_percapita_data) <- as.character(gdp_percapita_data[3, ])
+gdp_percapita_data<- gdp_percapita_data[-(1:3), ]
+
+```
+
+### Political Stability- no violence
+
+Estimate of governance (ranges from approximately -2.5 (weak) to 2.5 (strong) governance performance). 2000-2022
+
+```{r}
+political_stabilty<- read_xlsx("./data/wgidataset.xlsx", sheet = 3)
+
+colnames(political_stabilty) <- as.character(political_stabilty[13, ])
+political_stabilty <- political_stabilty[-(1:13), ]
+```
+
+### Government Effectiveness
+
+Estimate of governance (ranges from approximately -2.5 (weak) to 2.5 (strong) governance performance). 2000-2022
+
+```{r}
+government_effectiveness<- read_xlsx("./data/wgidataset.xlsx", sheet = 4)
+
+colnames(government_effectiveness) <- as.character(government_effectiveness[13, ])
+government_effectiveness <- government_effectiveness[-(1:13), ]
+```
+
+## Economist Intelligence Unit 
+
+### Democracy Index (2006-2022)
+
+```{r}
+
+democracy_index<- read.csv("./data/democracy-index-eiu.csv")
+
+```
+
+# Clean corruption data
+
+```{r}
+
+# WJP absence corruption
+
+corruption_1<- absence_corrup_data %>% 
+  select(Country,Year, `Country Code`,`Factor 2: Absence of Corruption`, `2.1 Government officials in the executive branch do not use public office for private gain`,`2.2 Government officials in the judicial branch do not use public office for private gain`,`2.3 Government officials in the police and the military do not use public office for private gain`, `2.4 Government officials in the legislative branch do not use public office for private gain`)
+
+#V_dem index 1
+corruption_2<-corruption_politics_data %>% 
+  select(cname,year,vdem_corr,ccodealp,bci_bci,ccp_cc,ti_cpi,vdem_mecorrpt,wbgi_cce,wdi_tacpsr)
+
+#V_dem index 2
+corruption_2_1<- corruption_v_dem %>% 
+  select(country_name,country_text_id, year, v2jucorrdc,v2xnp_regcorr,v2x_corr,v2x_execorr,v2x_pubcorr,e_wbgi_cce, v2excrptps, v2exbribe, v2lgcrrpt, v2mecorrpt)
+
+#UN
+corruption_3<-corruption_UN %>% 
+  select(Iso3_code,Country,Indicator,Dimension,Category,Year,VALUE, `Unit of measurement`)
+
+#CPI Transparency
+corruption_4<-perception_data %>% 
+  select(`Country / Territory`,ISO3,`CPI score 2023`,`CPI score 2022`,`CPI score 2021`,`CPI score 2020`,`CPI score 2019`,`CPI score 2018`,`CPI score 2017`,`CPI score 2016`,`CPI score 2015`,`CPI score 2014`,`CPI Score 2013`,`CPI Score 2012`)
+
+```
+
+```{r}
+
+#Change the names of the columns
+
+#WJP
+colnames(corruption_1) <- c('country','year','ISO','2_absence_corr','2.1_absence_corr', '2.2_absence_corr', '2.3_absence_corr', '2.4_absence_corr')
+
+corruption_1$year<- ifelse(corruption_1$year == "2012-2013", 2013, ifelse(corruption_1$year == "2017-2018", 2018, corruption_1$year))
+
+
+
+# Varieties democracy index
+
+colnames(corruption_2)[1]<-('country')
+colnames(corruption_2)[4]<-('ISO')
+
+#Varieties democracy index_2_1
+
+colnames(corruption_2_1)[1]<-('country')
+colnames(corruption_2_1)[2]<-('ISO')
+
+#UN
+colnames(corruption_3)[1]<-('ISO')
+colnames(corruption_3)[2]<-('country')
+colnames(corruption_3)[6]<-('year')
+
+
+corruption_3 <- corruption_3 %>% 
+  filter(Category %in% c('Corruption', 'Corruption: Bribery', 'Corruption: Other acts of corruption'))
+
+
+corruption_3 <- corruption_3 %>% 
+  filter(`Unit of measurement`=='Rate per 100,000 population')
+
+
+
+#Transparency International
+
+colnames(corruption_4)[1]<-('country')
+colnames(corruption_4)[2]<-('ISO')
+
+```
+
+```{r}
+#Pivot data
+
+# Pivot UN data
+
+corruption_3_pivot<-corruption_3%>%
+  pivot_wider(names_from = Category, values_from = VALUE)
+colnames(corruption_3_pivot)[7]<-('un_corr')
+colnames(corruption_3_pivot)[8]<-('un_corr_bribery')
+colnames(corruption_3_pivot)[9]<-('un_corr_other')
+
+#Pivot Transparency data
+# Pivot the data to a long format
+corruption_4_pivot<- corruption_4 %>% 
+  pivot_longer(
+    cols = starts_with("CPI"), # Select columns that start with "CPI_score"
+    names_to = "year", # Name of the new column for the year
+    values_to = "CPI_score", # Name of the new column for the CPI scores
+    names_prefix = "CPI_score_" # Remove the prefix from the year column
+  )
+  
+# Removing 'CPI score' from the 'year' column
+corruption_4_pivot$year <- gsub("CPI score", "", corruption_4_pivot$year)
+corruption_4_pivot$year <- gsub("CPI Score", "", corruption_4_pivot$year)
+
+# Converting the 'year' column to numeric
+corruption_4_pivot$year <- as.numeric(corruption_4_pivot$year)
+
+# If there might be leading or trailing spaces after removing 'CPI score', you might want to trim those as well
+corruption_4_pivot$year <- as.numeric(trimws(corruption_4_pivot$year))
+
+```
+
+```{r}
+#YEARS
+corruption_1_13_23<-corruption_1 %>% 
+  filter(year>2011)
+
+corruption_2_12_23<-corruption_2_1%>% 
+   filter(year>2011)
+
+corruption_3_13_21<-corruption_3_pivot %>% 
+  filter(year>2011)
+
+corruption_4_12_23<-corruption_4_pivot %>% 
+  filter(year>2011)
+```
+
+## Available data and NAs in corruption data
+
+```{r}
+#NAs 
+#corruption_1_13_23
+na_counts_1 <- corruption_1_13_23 %>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+
+#corruption_2_12_23
+na_counts_2 <- corruption_2_12_23 %>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+
+#corruption_3_13_21
+na_counts_3 <- corruption_3_13_21 %>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+
+#corruption_4_12_23
+na_counts_4 <- corruption_4_12_23 %>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+```
+
+```{r}
+countries_corr_1<-unique(corruption_1_13_23$ISO)
+countries_corr_2<-unique(corruption_2_12_23$ISO)
+countries_corr_3<-unique(corruption_3_13_21$ISO)
+countries_corr_4<-unique(corruption_4_12_23$ISO)
+
+```
+
+```{r}
+# Find intersection of ISO variable between the first two datasets
+common_iso_1 <- intersect(corruption_1_13_23$ISO, corruption_2_12_23$ISO)
+
+# 133 countries match
+common_iso_2<- intersect(common_iso_1, corruption_4_12_23$ISO)
+
+#82 countries in common
+common_iso_3<-intersect(common_iso_2, corruption_3_13_21$ISO)
+```
+
+```{r}
+
+
+#corr_merge<- merge(corruption_1_13_23, corruption_2_12_23, by=c('ISO', 'year'))
+
+```
+
+# Clean independent variables data
+
+```{r}
+other_v_dem_subdata<- other_v_dem %>% 
+  select(country_name,country_text_id, year, v2x_polyarchy,
+v2x_egaldem,
+v2x_freexp_altinf,
+v2x_cspart,
+v2xeg_eqdr,
+v2x_jucon,
+v2xlg_legcon,
+v2cltrnslw,
+v2clacjust,
+v2clacjstm,
+v2clacjstw,
+v2cldiscm,
+v2cldiscw,
+v2clacfree,
+v2pepwrses,
+v2pepwrsoc,
+v2pepwrgen,
+v2peedueq,
+v2pehealth,
+v2peapsecon,
+v2peasbecon,
+v2peasjgen,
+v2cacamps,
+v2x_accountability,
+v2x_civlib,
+v2x_clpol,
+v2x_gender,
+v2x_genpp,
+v2x_rule,
+v2smgovfilcap,
+v2smregcap,
+e_peaveduc,
+e_peedgini,
+e_gdp,
+e_gdppc,
+e_miinflat,
+e_civil_war )
+```
+
+```{r}
+all_v_dem_subdata<- other_v_dem %>% 
+  select(country_name,country_text_id, year, v2x_polyarchy,
+v2x_egaldem,
+v2x_freexp_altinf,
+v2x_cspart,
+v2xeg_eqdr,
+v2x_jucon,
+v2xlg_legcon,
+v2cltrnslw,
+v2clacjust,
+v2clacjstm,
+v2clacjstw,
+v2cldiscm,
+v2cldiscw,
+v2clacfree,
+v2pepwrses,
+v2pepwrsoc,
+v2pepwrgen,
+v2peedueq,
+v2pehealth,
+v2peapsecon,
+v2peasbecon,
+v2peasjgen,
+v2cacamps,
+v2x_accountability,
+v2x_civlib,
+v2x_clpol,
+v2x_gender,
+v2x_genpp,
+v2x_rule,
+v2smgovfilcap,
+v2smregcap,
+e_peaveduc,
+e_peedgini,
+e_gdp,
+e_gdppc,
+e_miinflat,
+e_civil_war,
+e_wbgi_cce,
+v2jucorrdc,
+v2x_corr,
+v2mecorrpt,
+v2xnp_regcorr,
+v2x_execorr,
+v2x_pubcorr,
+v2exbribe,
+v2excrptps,
+v2lgcrrpt, v2cacamps,v2caviol,v2csreprss)
+
+
+
+```
+
+```{r}
+#changing column names 
+colnames(all_v_dem_subdata)[1]<-('country')
+colnames(all_v_dem_subdata)[2]<-('ISO')
+colnames(other_v_dem_subdata)[1]<-('country')
+colnames(other_v_dem_subdata)[2]<-('ISO')
+colnames(eco_growth_data)[1]<-('country')
+colnames(eco_growth_data)[2]<-('ISO')
+
+```
+
+```{r}
+#select only the imoortant columns 
+
+eco_growth_data_clean<-eco_growth_data %>% 
+  select(-`Indicator Code`)
+
+# Pivot the data to a long format
+eco_growth_data_clean_pivot<- eco_growth_data_clean %>% 
+  pivot_longer(
+    cols = 4:ncol(eco_growth_data_clean), 
+    names_to = "year", 
+    values_to = "gdp_growth"
+  )
+
+eco_growth_data_clean_pivot<-eco_growth_data_clean_pivot %>% 
+  select(-`Indicator Name`)
+
+
+```
+
+```{r}
+#YEARS
+
+all_eco_growth_20_22<-eco_growth_data_clean_pivot %>% 
+  filter(year>1999)
+
+all_2_20_22<-all_v_dem_subdata %>% 
+  filter(year>1999 & year<2023)
+
+others_2_20_22<-other_v_dem_subdata%>% 
+  filter(year>1999 & year<2023)
+
+
+
+```
+
+```{r}
+# gdp per capita
+
+#select only the imoortant columns 
+
+gdp_data_clean<-gdp_percapita_data %>% 
+  select(-`Indicator Code`)
+
+# Pivot the data to a long format
+gdp_data_clean_pivot<- gdp_data_clean %>% 
+  pivot_longer(
+    cols = 4:ncol(gdp_data_clean), 
+    names_to = "year", 
+    values_to = "gdp_percapita"
+  )
+
+gdp_data_clean_pivot<-gdp_data_clean_pivot %>% 
+  select(-`Indicator Name`)
+
+#YEARS
+
+all_gdp_20_22<-gdp_data_clean_pivot %>% 
+  filter(year>1999 & year<2023)
+
+colnames(all_gdp_20_22)[1]<-('country')
+colnames(all_gdp_20_22)[2]<-('ISO')
+
+```
+
+## Available data and NAs in independent data
+
+```{r}
+#all_2_12_23
+na_counts_all_2 <- all_2_20_22%>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+
+#other_2_12_23
+na_counts_other_2 <- others_2_20_22%>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+
+
+
+#gdp_2_20_22
+na_all_eco_growth<-all_eco_growth_20_22 %>% 
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+```
+
+```{r}
+# Filter the dataframe to count only rows with 1 in the 'v2lgcrrpt' column
+count_of_ones <- na_counts_all_2%>%
+    dplyr::group_by(year, country) %>%
+    dplyr::summarise(count = sum(v2lgcrrpt == 1, na.rm = TRUE))
+
+
+```
+
+```{r}
+countries_with_ones <- na_counts_all_2 %>%
+  dplyr::group_by(country) %>% # Assuming 'country' is the name of the country column
+  dplyr::summarise(count = sum(v2lgcrrpt == 1, na.rm = TRUE)) %>%
+  dplyr::filter(count >= 1)
+
+```
+
+```{r}
+# Check for NAs in each row, excluding the first three columns
+na_check <- apply(all_2_20_22[, -c(1, 2, 3)], 1, function(x) any(is.na(x)))
+
+# Subset the original dataframe to include only rows with any NA values in the variables
+na_rows <- all_2_20_22[na_check, ]
+
+# Create a summary dataframe
+na_summary <- na_rows[, c("country", "year")]
+
+
+na_detail <- apply(all_2_20_22[, -c(1, 2, 3)], 1, function(x) {
+  if(any(is.na(x))) {
+    paste(names(which(is.na(x))), collapse=", ")
+  } else {
+    NA
+  }
+})
+
+na_summary$na_columns <- na_detail[na_check]
+
+
+```
+
+# Data without NAs
+
+```{r}
+clean_all_2_20_22<- all_2_20_22 %>% 
+  select(country, ISO, year, v2x_polyarchy,
+v2x_egaldem,
+v2x_freexp_altinf,
+v2x_cspart,
+v2xeg_eqdr,
+v2x_jucon,
+v2cltrnslw,
+v2clacjust,
+v2clacjstm,
+v2clacjstw,
+v2cldiscm,
+v2cldiscw,
+v2clacfree,
+v2pepwrses,
+v2pepwrsoc,
+v2pepwrgen,
+v2peedueq,
+v2pehealth,
+v2x_accountability,
+v2x_civlib,
+v2x_clpol,
+v2x_rule,
+v2smgovfilcap,
+v2smregcap,
+v2jucorrdc,
+v2x_corr,
+v2mecorrpt,
+v2xnp_regcorr,
+v2x_execorr,
+v2x_pubcorr,
+v2exbribe,
+v2excrptps)
+
+
+#option 2
+
+clean_2_all_2_20_22<- all_2_20_22 %>% 
+  select(country, ISO, year, v2x_polyarchy,
+v2x_egaldem,
+v2x_freexp_altinf,
+v2x_cspart,
+v2xeg_eqdr,
+v2x_jucon,
+v2cltrnslw,
+v2clacjust,
+v2clacjstm,
+v2clacjstw,
+v2cldiscm,
+v2cldiscw,
+v2clacfree,
+v2pepwrses,
+v2pepwrsoc,
+v2pepwrgen,
+v2peedueq,
+v2pehealth,
+v2x_accountability,
+v2x_civlib,
+v2x_clpol,
+v2x_rule,
+v2smgovfilcap,
+v2smregcap,
+v2jucorrdc,
+v2x_corr,
+v2mecorrpt,
+v2xnp_regcorr,
+v2x_execorr,
+v2x_pubcorr,
+v2exbribe,
+v2excrptps,
+v2lgcrrpt,v2cacamps,v2caviol,v2csreprss)
+
+
+clean_all_2_20_22<- clean_all_2_20_22%>% 
+  filter(ISO!='TLS')
+
+clean_all_2_20_22<- clean_all_2_20_22%>% 
+  filter(ISO!='BHR')
+
+
+na_counts_all_clean_vdem <- clean_all_2_20_22%>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+```
+
+```{r}
+# First, find the ISO codes of countries with at least one NA in gdp_growth
+iso_with_na <- all_eco_growth_20_22%>% 
+  group_by(ISO) %>% 
+  filter(any(is.na(gdp_growth))) %>% 
+  dplyr::summarise() 
+  
+
+# Then, filter out the rows with those ISO codes
+clean_growth_20_22<- all_eco_growth_20_22 %>% 
+  filter(!(ISO %in% iso_with_na$ISO))
+```
+
+```{r}
+
+
+# Identify ISO codes with at least one NA in any column
+iso_with_na_2 <- clean_all_2_20_22 %>% 
+  group_by(ISO) %>% 
+  filter(any(is.na(.))) %>%
+  dplyr::summarise(na_row_count = n())
+```
+
+```{r}
+# gdp per capita
+# First, find the ISO codes of countries with at least one NA in gdp_growth
+gdp_iso_with_na <- all_gdp_20_22%>% 
+  group_by(ISO) %>% 
+  filter(any(is.na(gdp_percapita))) %>% 
+  dplyr::summarise() 
+  
+
+# Then, filter out the rows with those ISO codes
+clean_gdp_20_22<- all_gdp_20_22 %>% 
+  filter(!(ISO %in% gdp_iso_with_na$ISO))
+
+# Identify ISO codes with at least one NA in any column
+iso_gdp_with_na_2 <- clean_gdp_20_22%>% 
+  group_by(ISO) %>% 
+  filter(any(is.na(.))) %>%
+  dplyr::summarise(na_row_count = n())
+
+```
+
+```{r}
+merged_data<- merge(clean_all_2_20_22,clean_growth_20_22, by=c('year','ISO'))
+
+merged_data<-merged_data %>% 
+  select(-country.y)
+
+colnames(merged_data)[3]<-('country')
+
+
+
+
+```
+
+# Normalize data
+
+Without the WB data
+
+```{r}
+nor_all_2_20_22 <- clean_all_2_20_22
+columns_to_scale <- names(nor_all_2_20_22)[4:ncol(nor_all_2_20_22)]
+
+# Applying the Min-Max scaling
+nor_all_2_20_22[columns_to_scale] <- lapply(nor_all_2_20_22[columns_to_scale], function(x) {
+  rescale(x, to = c(0, 1), from = range(x, na.rm = TRUE))
+})
+
+
+
+```
+
+```{r}
+#Change the direction of the corruption index so the countries with the less corruption have the highest values
+
+nor_all_2_20_22$v2x_corr_2 <- 1 - nor_all_2_20_22$v2x_corr
+```
+
+```{r}
+#save dataset 1
+
+#write.csv(nor_all_2_20_22, "./data/clean_data_1.csv", row.names = FALSE)
+
+
+```
+
+With the WB data
+
+```{r}
+merged_data$gdp_growth <- as.numeric(merged_data$gdp_growth)
+
+wb_all_2_20_22 <- merged_data
+columns_to_scale <- names(wb_all_2_20_22)[4:ncol(wb_all_2_20_22)]
+
+
+
+# Applying the Min-Max scaling
+wb_all_2_20_22[columns_to_scale] <- lapply(wb_all_2_20_22[columns_to_scale], function(x) {
+  rescale(x, to = c(0, 1), from = range(x, na.rm = TRUE))
+})
+
+
+```
+
+```{r}
+
+
+wb_all_2_20_22$v2x_corr_2 <- 1 - wb_all_2_20_22$v2x_corr
+
+unique<-unique(wb_all_2_20_22$ISO)
+```
+
+```{r}
+#save dataset 2
+
+#write.csv(wb_all_2_20_22, "./data/clean_data_2.csv", row.names = FALSE)
+```
+
+```{r}
+# Create a data frame of all possible combinations of ISO codes and years
+all_iso <- unique(wb_all_2_20_22$ISO)
+all_years <- 2000:2022
+complete_set <- expand.grid(ISO = all_iso, year = all_years)
+
+# Check for missing combinations in the original dataset
+missing_combinations <- anti_join(complete_set, wb_all_2_20_22, by = c("ISO", "year"))
+
+# View missing combinations
+if(nrow(missing_combinations) > 0) {
+  print(missing_combinations)
+} else {
+  print("All ISO-year combinations are present.")
+}
+```
+
+# Data that includes gdp growth
+
+```{r}
+clean_2_all_2_20_22<- clean_2_all_2_20_22%>% 
+  filter(ISO!='TLS')
+
+clean_2_all_2_20_22<- clean_2_all_2_20_22%>% 
+  filter(ISO!='BHR')
+
+
+na_2_counts_all_clean_vdem <- clean_2_all_2_20_22%>%
+  group_by(country, year) %>%
+  dplyr::summarise(across(everything(), ~sum(is.na(.))))
+```
+
+```{r}
+clean_legis<- clean_2_all_2_20_22 %>%
+  drop_na()
+ 
+```
+
+```{r}
+available_years_by_country <- clean_legis %>%
+  group_by(ISO) %>%
+  dplyr::summarise(years = list(year))
+```
+
+```{r}
+# Define the range of desired years
+desired_years <- 2000:2022
+
+# Create a new dataframe with only countries having complete data from 2000 to 2022
+complete_data_countries <-clean_legis %>%
+  group_by(country) %>%
+  # Check if all desired years are present for each country
+  filter(all(desired_years %in% year)) %>%
+  ungroup()  # Ungroup to remove the grouping
+
+unique(complete_data_countries$ISO)
+```
+
+```{r}
+# First, find the ISO codes of countries with at least one NA in gdp_growth
+iso_with_na <- all_eco_growth_20_22%>% 
+  group_by(ISO) %>% 
+  filter(any(is.na(gdp_growth))) %>% 
+  dplyr::summarise() 
+  
+
+# Then, filter out the rows with those ISO codes
+clean_growth_20_22<- all_eco_growth_20_22 %>% 
+  filter(!(ISO %in% iso_with_na$ISO))
+
+#unique(clean_growth_20_22$ISO)
+```
+
+```{r}
+merged_data_2<- merge(complete_data_countries,clean_growth_20_22, by=c('ISO','year'))
+
+merged_data_2<-merged_data_2 %>% 
+  select(-country.y)
+
+colnames(merged_data_2)[3]<-('country')
+
+m2<-unique(merged_data_2$ISO)
+```
+
+```{r}
+merged_data_2$gdp_growth <- as.numeric(merged_data_2$gdp_growth)
+
+wb_2_all_2_20_22 <- merged_data_2
+columns_to_scale <- names(wb_2_all_2_20_22)[4:ncol(wb_2_all_2_20_22)]
+
+
+
+# Applying the Min-Max scaling
+wb_2_all_2_20_22[columns_to_scale] <- lapply(wb_2_all_2_20_22[columns_to_scale], function(x) {
+  rescale(x, to = c(0, 1), from = range(x, na.rm = TRUE))
+})
+
+```
+
+```{r}
+
+wb_2_all_2_20_22$v2x_corr_2 <- 1 - wb_2_all_2_20_22$v2x_corr
+wb_2_all_2_20_22$v2x_execorr_2 <- 1 - wb_2_all_2_20_22$v2x_execorr
+#wb_2_all_2_20_22$v2jucorrdc_2 <- 1 - wb_2_all_2_20_22$v2jucorrdc
+#wb_2_all_2_20_22$v2lgcrrpt_2 <- 1 - wb_2_all_2_20_22$v2lgcrrpt
+wb_2_all_2_20_22$v2cacamps_2 <- 1 - wb_2_all_2_20_22$v2cacamps
+wb_2_all_2_20_22$v2caviol_2 <- 1 - wb_2_all_2_20_22$v2caviol
+unique<-unique(wb_2_all_2_20_22$ISO)
+```
+
+```{r}
+#write.csv(wb_2_all_2_20_22, "./data/clean_data_3.csv", row.names = FALSE)
+```
+
+# Data that includes gdp growth and gdp per capita)
+
+```{r}
+merged_data_3<- merge(wb_2_all_2_20_22,clean_gdp_20_22, by=c('ISO','year'))
+merged_data_3<-merged_data_3 %>% 
+  select(-country.y)
+
+colnames(merged_data_3)[3]<-('country')
+
+m3<-unique(merged_data_3$ISO)
+```
+
+```{r}
+
+merged_data_3$gdp_percapita <- as.numeric(merged_data_3$gdp_percapita)
+
+wb_3_all_2_20_22 <- merged_data_3
+#columns_to_scale <- names(wb_3_all_2_20_22)[39:ncol(wb_3_all_2_20_22)]
+
+
+
+# Applying the Min-Max scaling
+#wb_3_all_2_20_22[columns_to_scale] <- lapply(wb_3_all_2_20_22[columns_to_scale], function(x) {
+  #rescale(x, to = c(0, 1), from = range(x, na.rm = TRUE))
+#})
+```
+
+```{r}
+#write.csv(wb_3_all_2_20_22, "./data/clean_data_4.csv", row.names = FALSE)
+```

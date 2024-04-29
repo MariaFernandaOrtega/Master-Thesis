@@ -7,7 +7,7 @@ This repository contains the research work for a study that investigates the clu
 
 
 ## How to Use This Repository
-- To review the data, navigate to `/data`. All sources where obtain from international organizations that provide free acess to their data.
+- To review the data, navigate to `/data`. All sources where obtain from international organizations that provide free acess to their data.The data from the V-Dem Institute is too large to be uploaded to this repository, but it is essential for the model implementation. Access it here: https://v-dem.net/data/the-v-dem-dataset/
 - To review the metada files that detail the structure, descriptions of datasets used, see  `/Metadata`. For the specific variables used in the clustering models see, `/Code_book`. 
 - For  the preprocessing code (e.g. import data, clean data, and get the final dataset), check `data_preprocessing.qmd`.
 - For the code for the models implementation and evaluation, check `model_code.ipynb`.

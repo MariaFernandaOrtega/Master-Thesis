@@ -20,5 +20,16 @@ This repository contains the research work for a study that investigates the clu
 This work is part of the master thesis of Maria Fernanda Ortega, for the Master of Data Science for Public Policy at the Hertie School.
 
 ## Bibliography used for the code implementation
+Amidon, A. (n.d.). How to Apply K-means Clustering to Time Series Data. Towards Data Science. Retrieved 26 March 2024, from https://towardsdatascience.com/how-to-apply-k-means-clustering-to-time-series-data-28d04a8f7da3
+Cerliani, M. (2023, January 31). PCA for Multivariate Time Series: Forecasting Dynamic High-Dimensional Data. Medium. https://towardsdatascience.com/pca-for-multivariate-time-series-forecasting-dynamic-high-dimensional-data-ab050a19e8db
+Ecosystem (LEDU), E. (2018, September 12). Understanding K-means Clustering in Machine Learning. Medium. https://towardsdatascience.com/understanding-k-means-clustering-in-machine-learning-6a6e67336aa1
+Graff, V. (2023, April 13). Dimension Reduction: Facing the Curse of Dimensionality. Medium. https://towardsdatascience.com/dimension-reduction-facing-the-curse-of-dimensionality-63a743e4b199
+Heka.ai. (2022, June 9). Time series clustering. Medium. https://heka-ai.medium.com/time-series-clustering-b84bcaaa63ac
+Introduction to Time Series Clustering. (n.d.). Retrieved 26 March 2024, from https://kaggle.com/code/izzettunc/introduction-to-time-series-clustering
+Saleh, H. (2023, December 21). Unveiling Patterns in Time: A Guide to Time Series Clustering with tslearn. Medium. https://levelup.gitconnected.com/unveiling-patterns-in-time-a-guide-to-time-series-clustering-with-tslearn-50a2ff305afe
+Time Series Clustering—Tslearn 0.6.3 documentation. (n.d.-a). Retrieved 26 March 2024, from https://tslearn.readthedocs.io/en/stable/user_guide/clustering.html
+Time Series Clustering—Tslearn 0.6.3 documentation. (n.d.-b). Retrieved 20 April 2024, from https://tslearn.readthedocs.io/en/stable/user_guide/clustering.html
+Tousignant, P. (2023, January 16). Dynamic Factor Models in Python. Medium. https://medium.com/@philippetousignant/dynamic-factor-models-in-python-58d2d5252640
+
 
 --- 

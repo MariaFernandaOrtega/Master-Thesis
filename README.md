@@ -8,7 +8,7 @@ This repository contains the research work for a study that investigates the clu
 
 ## How to Use This Repository
 - To review the data, navigate to `/data`. All sources where obtain from international organizations that provide free acess to their data.
-- To review the metada files that detail the structure, descriptions of datasets used, see  `/Metadata`/. For the specific variables used in the clustering models see, `/Code_book/` 
+- To review the metada files that detail the structure, descriptions of datasets used, see  `/Metadata`. For the specific variables used in the clustering models see, `/Code_book`. 
 - For  the preprocessing code (e.g. import data, clean data, and get the final dataset), check `data_preprocessing.qmd`.
 - For the code for the models implementation and evaluation, check `model_code.ipynb`.
 - To see the visual results, explore the `/figures` directory.

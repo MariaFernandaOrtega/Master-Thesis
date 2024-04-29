@@ -3,7 +3,7 @@ title: " "
 format:
   pdf:
     toc: true
-    toc_depth: 4
+    toc_depth: 5
     documentclass: scrartcl
     papersize: a4
     geometry: 
@@ -79,11 +79,11 @@ a\. Political Corruption: This index measures the overall extent of corruption w
 
 b\. Judicial, Executive, and Legislative Corruption: These three indices measure the prevalence of corrupt activities within each governmental branch, assessing how judges, executive leaders, and legislators are influenced by bribes, personal connections, or private interests in their decision-making processes.
 
-Regarding the political and sociopolitical and economic variables, a random forest regressor was applied to the years 2000 and 2022 to identify the most influential factors in political corruption from 20 variables,[^3] considered important by the literature. Key indicators that repeatedly scored high on importance in both years included 'Freedom of Expression', 'Access to Justice for Men', 'Access to Justice for Women', and 'GDP per Capita'. Additionally, 'Health Equality' ranked second in importance for 2022, and 'Transparent Laws with Predictable Enforcement' topped the list for 2000. Therefore, these six variables were selected to further analyse in this study (Table 1 and 2 of the Appendix show the respective scores).
+Regarding the political and sociopolitical and economic variables, a random forest regressor was applied to the years 2000 and 2022 to identify the most influential factors in political corruption from 20 variables,[^3] considered important by the literature. Key indicators that repeatedly scored high on importance in both years included 'Freedom of Expression', 'Access to Justice for Men', 'Access to Justice for Women', and 'GDP per Capita'. Additionally, 'Health Equality' ranked second in importance for 2022, and 'Transparent Laws with Predictable Enforcement' topped the list for 2000. Therefore, these six variables were selected to further analyse in this study (Table 1A and 2A of the Appendix A show the respective scores).
 
 [^3]: Transparent laws with predictable enforcement, Health equality, GDP per capita, Freedom of expression, Access to justice for women, Access to justice for men, Educational equality, Social class equality in respect for civil liberties, Power distributed by socioeconomic position, Freedom of discussion for women, Freedom of discussion for men, Political Violence, Power distributed by gender, Power distributed by social group, GDP growth annual percentage, civil society organizations repression, Freedom of academic and cultural expression, Government capacity to regulate online content, Political Polarization, and Government internet filtering capacity.
 
-Furthermore, the four corruption-related variables (political, executive, legislative and judicial) were normalized due to the use of clustering models. This allows for consistency and comparability of results across models (Han et al., 2022). Socio-political variables were also normalised, even though they were not directly involved in the clustering process. By normalising both sets of variables, a consistent framework of analysis across the different dimensions of the data is facilitated, improving the interpretability and comparability of the results. The only exception to this normalisation process was GDP per capita[^4]. This variable was left unnormalized to preserve its interpretability, as its absolute values are more meaningful when not transformed. Lastly, we specifically address the inverse of the politcal corruption scores, focusing on the absence of corruption. This methodological choice improves interpretability, which is especially important when working with correlation analysis.
+Furthermore, the four corruption-related variables (political, executive, legislative and judicial) were normalized due to the use of clustering models. This allows for consistency and comparability of results across models (Han et al., 2022). Socio-political variables were also normalised, even though they were not directly involved in the clustering process. By normalising both sets of variables, a consistent framework of analysis across the different dimensions of the data is facilitated, improving the interpretability and comparability of the results. The only exception to this normalisation process was GDP per capita[^4]. This variable was left unnormalised to preserve its interpretability, as its absolute values are more meaningful when not transformed. Lastly, we specifically address the inverse of the politcal corruption scores, focusing on the absence of corruption. This methodological choice improves interpretability, which is especially important when working with correlation analysis.
 
 [^4]: GDP per capita adjusted for purchasing power parity (PPP) and measured in international dollars.
 
@@ -264,7 +264,7 @@ These results suggest that, among the clusters, only cluster 3 demonstrate a str
 
 ### **Clustering Model Selection**
 
-As with political corruption, the Kernel K-means model with 7 clusters has been selected to implement for the executive, legislative and judicial corruption data. This decision is based on the performance of the model, which has outperformed the others in at least one of the key performance parameters - the Silhouette and Davies-Bouldin scores - and has demonstrated competitive or superior results in the remaining metric. The tables with the evaluation results for each branch of corruption are documented in the Appendix in Tables 5, 6, and 7.
+As with political corruption, the Kernel K-means model with 7 clusters has been selected to implement for the executive, legislative and judicial corruption data. This decision is based on the performance of the model, which has outperformed the others in at least one of the key performance parameters - the Silhouette and Davies-Bouldin scores - and has demonstrated competitive or superior results in the remaining metric. The tables with the evaluation results for each branch of corruption are documented in the Appendix B in Tables 1B, 2B, and 3B.
 
 ### Executive Corruption
 
@@ -581,4 +581,180 @@ Yin, R., Liu, Y., Wang, W., & Meng, D. (2022). Randomized Sketches for Clusterin
 
 # Appendix
 
-## Appendix A
+## Appendix A: **Analysis of Variable Importance Scores for Political Corruption**
+
+### **Table 1A: Importance Scores of Variables in Assesing Political Corruption (2000**)
+
+Table 1A lists the importance scores assigned to various sociopolitical and economic variables[^5] in the year 2000 using a random forest regression model. These scores help identify the most influential factors in political corruption as determined by the model. The variables are ranked from highest to lowest importance score.
+
+[^5]: Transparent laws with predictable enforcement (v2cltrnslw), Health equality (v2pehealth), GDP per capita (gdp_percapita), Freedom of expression (v2x_freexp_altinf), Access to justice for women (v2clacjstw), Access to justice for men (v2clacjstm), Educational equality (v2peedueq), Social class equality in respect for civil liberties (v2clacjust), Power distributed by socioeconomic position (v2pepwrses), Freedom of discussion for women (v2cldiscw), Freedom of discussion for men (v2cldiscm), Political Violence (v2caviol_2), Power distributed by gender (v2pepwrgen), Power distributed by social group (v2pepwrsoc), GDP growth annual percentage (gdp_growth), Civil society organizations repression (v2csreprss), Freedom of academic and cultural expression (v2clacfree), Government capacity to regulate online content (v2smregcap), Political Polarization (v2cacamps_2), and Government internet filtering capacity (v2smgovfilcap).
+
+```{=tex}
+\begin{table}[ht]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Variable} & \textbf{Importance Score} \\
+\midrule
+v2cltrnslw & 0.193269 \\
+v2clacjstm & 0.136818 \\
+gdp\_percapita & 0.121868 \\
+v2x\_freexp\_altinf & 0.092780 \\
+v2clacjstw & 0.083582 \\
+v2clacjust & 0.079436 \\
+v2csreprss & 0.047846 \\
+v2pepwrses & 0.041788 \\
+v2pehealth & 0.037527 \\
+v2clacfree & 0.030356 \\
+v2peedueq & 0.028924 \\
+v2caviol\_2 & 0.025730 \\
+v2pepwrgen & 0.013215 \\
+v2cldiscw & 0.012088 \\
+v2cacamps\_2 & 0.011133 \\
+v2pepwrsoc & 0.009283 \\
+v2cldiscm & 0.009239 \\
+v2smgovfilcap & 0.009149 \\
+v2smregcap & 0.008749 \\
+gdp\_growth & 0.007221 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+\newpage
+
+### **Table 2A: Importance Scores of Variables in Assesing Political Corruption (2022**)
+
+\
+Table 2A presents the importance scores for various sociopolitical and economic variables[^6] in the year 2022, as determined by a random forest regression model. It highlights the variables that have the most substantial impact on the model\'s ability to assess political corruption. The indicators are ranked from highest to lowest importance score.
+
+[^6]: Transparent laws with predictable enforcement (v2cltrnslw), Health equality (v2pehealth), GDP per capita (gdp_percapita), Freedom of expression (v2x_freexp_altinf), Access to justice for women (v2clacjstw), Access to justice for men (v2clacjstm), Educational equality (v2peedueq), Social class equality in respect for civil liberties (v2clacjust), Power distributed by socioeconomic position (v2pepwrses), Freedom of discussion for women (v2cldiscw), Freedom of discussion for men (v2cldiscm), Political Violence (v2caviol_2), Power distributed by gender (v2pepwrgen), Power distributed by social group (v2pepwrsoc), GDP growth annual percentage (gdp_growth), Civil society organizations repression (v2csreprss), Freedom of academic and cultural expression (v2clacfree), Government capacity to regulate online content (v2smregcap), Political Polarization (v2cacamps_2), and Government internet filtering capacity (v2smgovfilcap).
+
+```{=tex}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lc}
+\toprule
+\textbf{Variable} & \textbf{Importance Score} \\
+\midrule
+v2clacjstm & 0.160451 \\
+v2pehealth & 0.118136 \\
+gdp\_percapita & 0.112203 \\
+v2x\_freexp\_altinf & 0.094282 \\
+v2clacjstw & 0.082780 \\
+v2peedueq & 0.070814 \\
+v2cltrnslw & 0.069860 \\
+v2clacjust & 0.045452 \\
+v2pepwrses & 0.043556 \\
+v2cldiscw & 0.034479 \\
+v2caviol\_2 & 0.024388 \\
+v2pepwrgen & 0.023137 \\
+v2cldiscm & 0.022902 \\
+v2pepwrsoc & 0.021376 \\
+gdp\_growth & 0.020382 \\
+v2csreprss & 0.016590 \\
+v2clacfree & 0.013057 \\
+v2smregcap & 0.009894 \\
+v2cacamps\_2 & 0.008615 \\
+v2smgovfilcap & 0.007644 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+\newpage
+
+## Appendix B:  Performance Analysis of Clustering Models on Corruption Data across Executive, Legislative and Judicial branch
+
+### **Table 1B: Clustering Performance Metrics for Executive Branch Corruption**
+
+```{=tex}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Algorithm} & \textbf{Clusters} & \textbf{Silhouette} & \textbf{Davies-Bouldin} \\
+\midrule
+Kmeans euclidean & 6 & 0.387677 & 1.019757 \\
+Kmeans dtw & 6 & 0.354580 & 1.168293 \\
+Kmeans softdtw & 6 & 0.395986 & 1.049555 \\
+KernelKmeans gak & 6 & 0.317424 & 2.783482 \\
+Kmeans euclidean & 7 & 0.379637 & 1.025827 \\
+Kmeans dtw & 7 & 0.309925 & 1.155532 \\
+Kmeans softdtw & 7 & 0.384886 & 1.042122 \\
+KernelKmeans gak & 7 & 0.375478 & 0.963984 \\
+Kmeans euclidean & 8 & 0.372650 & 1.046366 \\
+Kmeans dtw & 8 & 0.310010 & 1.227996 \\
+Kmeans softdtw & 8 & 0.358705 & 1.140538 \\
+KernelKmeans gak & 8 & 0.368892 & 1.045154 \\
+Kmeans euclidean & 9 & 0.373753 & 0.940649 \\
+Kmeans dtw & 9 & 0.311077 & 1.394456 \\
+Kmeans softdtw & 9 & 0.369853 & 1.028891 \\
+KernelKmeans gak & 9 & 0.365957 & 1.064142 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+
+### **Table 2B: Clustering Performance Metrics for Legislative Branch Corruption**
+
+```{=tex}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Algorithm} & \textbf{Clusters} & \textbf{Silhouette} & \textbf{Davies-Bouldin} \\
+\midrule
+Kmeans euclidean & 6 & 0.366756 & 0.835434 \\
+Kmeans dtw & 6 & 0.355962 & 0.861127 \\
+Kmeans softdtw & 6 & 0.380215 & 0.835474 \\
+KernelKmeans gak & 6 & 0.381049 & 0.834859 \\
+Kmeans euclidean & 7 & 0.357949 & 0.872966 \\
+Kmeans dtw & 7 & 0.331559 & 1.089425 \\
+Kmeans softdtw & 7 & 0.333697 & 0.927217 \\
+KernelKmeans gak & 7 & 0.412364 & 0.660586 \\
+Kmeans euclidean & 8 & 0.348780 & 0.845363 \\
+Kmeans dtw & 8 & 0.320909 & 0.892372 \\
+Kmeans softdtw & 8 & 0.334301 & 0.925307 \\
+KernelKmeans gak & 8 & 0.348500 & 0.802839 \\
+Kmeans euclidean & 9 & 0.354484 & 0.757720 \\
+Kmeans dtw & 9 & 0.300974 & 0.860121 \\
+Kmeans softdtw & 9 & 0.302506 & 0.991433 \\
+KernelKmeans gak & 9 & 0.275890 & 0.720780 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```
+\newpage
+
+### **Table 3B: Clustering Performance Metrics for Judicial Branch Corruption**
+
+```{=tex}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{lccc}
+\toprule
+\textbf{Algorithm} & \textbf{Clusters} & \textbf{Silhouette} & \textbf{Davies-Bouldin} \\
+\midrule
+Kmeans euclidean & 6 & 0.372260 & 0.831614 \\
+Kmeans dtw & 6 & 0.340172 & 0.766334 \\
+Kmeans softdtw & 6 & 0.427214 & 0.779549 \\
+KernelKmeans gak & 6 & 0.413041 & 0.714883 \\
+Kmeans euclidean & 7 & 0.374673 & 0.803799 \\
+Kmeans dtw & 7 & 0.372457 & 0.724870 \\
+Kmeans softdtw & 7 & 0.455830 & 0.721843 \\
+KernelKmeans gak & 7 & 0.449791 & 0.598796 \\
+Kmeans euclidean & 8 & 0.387611 & 0.848474 \\
+Kmeans dtw & 8 & 0.362612 & 0.940231 \\
+Kmeans softdtw & 8 & 0.370614 & 0.905065 \\
+KernelKmeans gak & 8 & 0.368882 & 0.828662 \\
+Kmeans euclidean & 9 & 0.364839 & 0.871198 \\
+Kmeans dtw & 9 & 0.353356 & 0.887477 \\
+Kmeans softdtw & 9 & 0.343769 & 0.957672 \\
+KernelKmeans gak & 9 & 0.219088 & 0.803513 \\
+\bottomrule
+\end{tabular}
+\end{table}
+```

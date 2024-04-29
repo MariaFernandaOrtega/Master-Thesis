@@ -33,7 +33,7 @@ format:
       \vspace{5cm}
       
       \normalsize
-      Word Count: 7500 \\
+      Word Count: 7600 \\
       
       
       \end{titlepage}
@@ -43,17 +43,17 @@ format:
 
 # Abstract
 
-This study investigates the clustering of political, executive, legislative, and judicial corruption in 133 countries from 2000 to 2022, using time-series clustering techniques. The clustering was achieved through methods such as Time Series K-means with different distance metrics (Euclidean, DTW, Soft-DTW) and Kernel K-means. Model evaluations were conducted using the Silhouette Score and Davies-Bouldin Score. The research identifies distinct clusters of countries with similar corruption profiles and examines the evolution of these clusters over two decades. Our findings reveal that while some countries have recorded notable improvements in the fight against corruption, others continue to struggle with entrenched corrupt practices. In particular, Georgia and Tunisia show unique trajectories in their anti-corruption efforts. In addition, the study explores the correlation between the absence of corruption in these clusters and key socio-political and economic variables. In particular, in single-country clusters, there are significant correlations between corruption levels and factors such as transparency of laws, freedom of expression, access to justice and GDP per capita. The results of this research highlight the complex relationship between governance, economic variables and corruption.
+This study investigates the clustering of political, executive, legislative, and judicial corruption in 133 countries from 2000 to 2022, using time-series clustering techniques. The clustering was achieved through methods such as Time Series K-means with different distance metrics (Euclidean, DTW, Soft-DTW) and Kernel K-means. Model evaluations were conducted using the Silhouette Score and Davies-Bouldin Score. The research identifies distinct clusters of countries with similar corruption profiles and examines the evolution of these clusters over two decades. Our findings reveal that while some countries have recorded notable improvements in the fight against corruption, others continue to struggle with entrenched corrupt practices. In particular, Georgia and Tunisia show unique trajectories in their anti-corruption efforts. In addition, the study explores the correlation between the absence of corruption in these clusters and key socio-political and economic variables. Specifically, in single-country clusters, there are significant correlations between absence of corruption and factors such as transparency of laws, freedom of expression, access to justice and GDP per capita. The results of this research highlight the complex relationship between governance, economic variables and polical corruption.
 
 \newpage
 
 # Introduction
 
-Over the years, the debate among national governments and international bodies on the most effective government reforms and policies to combat political corruption has intensified. This focus is driven by the recognition that corruption not only undermines democratic institutions, but also exacerbates poverty and inequality. For instance, the World Bank (2020) highlights that corruption inflates the costs and decreases the efficiency of public and private investments, which severely undermines economic and social progress. In addition, the United Nations Development Program (2008) notes that corruption erodes trust in public institutions, hinders the rule of law, and can lead to political instability. Reinforcing these findings, the International Monetary Fund (2016), has stated that effective anti-corruption measures can significantly boost a country's economic growth by improving the management of public resources and the business environment. Despite these insights and global efforts to address the challenge, the complexity of corruption continues to evolve, requiring the pursuit of diverse analytical approaches to fully understand its dynamics and impact.
+Over the years, the debate among national governments and international bodies on the most effective government reforms and policies to combat political corruption has intensified. This focus is driven by the recognition that corruption not only undermines democratic institutions, but also exacerbates poverty and inequality. For instance, the World Bank (2020) highlights that corruption inflates the costs and decreases the efficiency of public and private investments, which severely affects economic and social progress. In addition, the United Nations Development Program (2008) notes that corruption erodes trust in public institutions, hinders the rule of law, and can lead to political instability. Reinforcing these findings, the International Monetary Fund (2016), has stated that effective anti-corruption measures can significantly boost a country's economic growth by improving the management of public resources and the business environment. Despite these insights and global efforts to address the challenge, the complexity of corruption continues to evolve, requiring the pursuit of diverse analytical approaches to fully understand its dynamics and impact.
 
-Building on this context, this study seeks to employ advanced statistical techniques, including time-series clustering models, to analyse data on corruption in 133 countries from 2000 to 2022. The objective is to identify how countries are clustered in terms of political corruption in general, as well as within different political branches: executive, legislative and judicial. In addition, this research examines the time trends of key socio-political and economic variables within these clusters, exploring their relationship with different branches of political corruption. The two main questions addressed are: (1) How are countries grouped according to the four categories of corruption analysed, and which clusters show peculiar trends over time? (2) What is the relationship between key socio-political and economic variables and the four categories of corruption in the different clusters?
+Building on this context, this study seeks to employ advanced statistical techniques, including time-series clustering models, to analyse data on corruption in 133 countries from 2000 to 2022. The objective is to identify how countries are clustered in terms of political corruption in general, as well as within different political branches: executive, legislative and judicial. In addition, this research examines the time trends of key socio-political and economic variables within these clusters, exploring their relationship with different branches of political corruption. The two main questions addressed are: (1) How are countries grouped according to the four categories of corruption, and which clusters show peculiar trends over time? (2) What is the relationship between key socio-political and economic variables and the four categories of corruption in the different clusters?
 
-Identifying clusters of countries with similar corruption profiles and understanding the specific dynamics of these clusters provides detailed information that could serve as a basis for targeted anti-corruption strategies. For instance, countries within a group that exhibit high levels of judicial corruption could benefit from targeted judicial reforms and international judicial cooperation. This approach aligns with the objectives of major international agencies, such as the World Bank and the United Nations, which aim to strengthen governance and improve the effectiveness of public administration. Therefore, this study seeks to contribute to analytical research on political corruption so that the development of public policies can be taken in an informed manner and that not only respond to the state of corruption, but also seek to be predictive and preventive, with the main objective of disrupting the conditions that foster corruption.
+Identifying clusters of countries with similar corruption profiles and understanding the specific dynamics of these clusters provides detailed information that could serve as a basis for targeted anti-corruption strategies. For instance, countries within a group that exhibit high levels of judicial corruption could benefit from targeted judicial reforms and international judicial cooperation. This approach aligns with the objectives of major international agencies, such as the World Bank and the United Nations, which aim to strengthen governance and improve the effectiveness of public administration. Therefore, this study seeks to contribute to analytical research on political corruption to enable the development of informed public policies that not only respond to the state of corruption, but also seek to be predictive and preventive, with the main objective of disrupting the conditions that foster corruption.
 
 # Related work
 
@@ -61,7 +61,7 @@ The literature on political corruption reveals that several variables significan
 
 On the other hand, Charron and Lapuente (2010) analyse the impact of political stability on corruption and conclude that stable political systems are associated with a reduction in corruption due to more effective governance mechanisms. Furthermore, Rothstein and Teorell (2008) highlight the crucial role of the quality of government institutions in the fight against corruption. They argue that effective, impartial and efficient institutions are essential to prevent corruption by maintaining high standards of public administration and accountability. Along those lines, Goel and Nelson (2011)elaborate on the importance of legal frameworks and their enforcement, noting that the perceived likelihood of being caught and punished is a crucial deterrent to corrupt practices, potentially more important than the severity of penalties.
 
-With respect to cultural influences on corruption, Husted (1999) investigates how social norms and values influence perceptions and behaviours of corruption and concludes that cultural dimensions can inhibit or facilitate corrupt activities depending on the social context. Similarly, Davis and Ruhe (2003) finding suggest that higher levels of perceived corruption correlate with cultural dimensions characterised by high power distance[^1], strong uncertainty avoidance and low individualism. They  also argue \'that masculine societies are perceived as more corrupt than more feminine societies.\' Along those lines, Uslaner (2008) emphasizes the role of societal trust and institutional fairness, arguing that higher levels of trust within a society and its institutions correlate with lower corruption levels.
+With respect to cultural influences on corruption, Husted (1999) investigates how social norms and values influence perceptions and behaviours of corruption and concludes that cultural dimensions can inhibit or facilitate corrupt activities depending on the social context. Similarly, Davis and Ruhe (2003) findings suggest that higher levels of perceived corruption correlate with cultural dimensions characterised by high power distance[^1], strong uncertainty avoidance and low individualism. They  also argue that 'masculine societies are perceived as more corrupt than more feminine societies.\' Along those lines, Uslaner (2008) emphasizes the role of societal trust and institutional fairness, arguing that higher levels of trust within a society and its institutions correlate with lower corruption levels.
 
 [^1]: According to Davis and Ruhe (2023), \'power distance is the level of acceptance by a society of the unequal distribution of power in institutions.\'
 
@@ -75,11 +75,11 @@ In this research, two primary data sources have been used to explore political c
 
 [^2]: For more information regarding the data collection and the code used in this research, see: <https://github.com/MariaFernandaOrtega/Master-Thesis.git>
 
-a\. Political Corruption: This index measures the overall extent of corruption within a country's political system. It integrates perceptions and experiences of corruption across various branches of government (public sector and executive, legislative, and judicial branches).
+a\. Political Corruption: This index measures the overall extent of corruption within a country's political system. It integrates perceptions and experiences of corruption across various branches of government (public sector; and executive, legislative, and judicial branches).
 
 b\. Judicial, Executive, and Legislative Corruption: These three indices measure the prevalence of corrupt activities within each governmental branch, assessing how judges, executive leaders, and legislators are influenced by bribes, personal connections, or private interests in their decision-making processes.
 
-Regarding the political and sociopolitical and economic variables, a random forest regressor was applied to the years 2000 and 2022 to identify the most influential factors in political corruption from 20 variables,[^3] considered important by the literature. Key indicators that repeatedly scored high on importance in both years included 'Freedom of Expression', 'Access to Justice for Men', 'Access to Justice for Women', and 'GDP per Capita'. Additionally, 'Health Equality' ranked second in importance for 2022, and 'Transparent Laws with Predictable Enforcement' topped the list for 2000. Therefore, these six variables were selected to further analyse in this study (Table 1A and 2A of the Appendix A show the respective scores).
+Regarding the political and sociopolitical and economic variables, a random forest regressor was applied to the years 2000 and 2022 to identify the most influential factors in political corruption from 20 variables,[^3] considered important by the literature. Key indicators that repeatedly scored high on importance in both years included 'Freedom of Expression', 'Access to Justice for Men', 'Access to Justice for Women', and 'GDP per Capita'. Additionally, 'Health Equality' ranked second in importance for 2022, and 'Transparent Laws with Predictable Enforcement' topped the list for 2000. Therefore, these six variables were selected to be analysed in this study (Table 1A and 2A of the Appendix A show the respective scores).
 
 [^3]: Transparent laws with predictable enforcement, Health equality, GDP per capita, Freedom of expression, Access to justice for women, Access to justice for men, Educational equality, Social class equality in respect for civil liberties, Power distributed by socioeconomic position, Freedom of discussion for women, Freedom of discussion for men, Political Violence, Power distributed by gender, Power distributed by social group, GDP growth annual percentage, civil society organizations repression, Freedom of academic and cultural expression, Government capacity to regulate online content, Political Polarization, and Government internet filtering capacity.
 
@@ -101,7 +101,7 @@ This research analysis is divided into two main parts: a) the clustering of the 
 
     -   **Euclidean Distance**: Method that measures the straight-line distance between two points. For time series, it calculates the sum of squared differences between corresponding points in two sequences (Witten, Frank, & Hall, 2011). $$d(x, y) = \sqrt{\sum_{t=1}^{T} (x_t - y_t)^2}$$
 
-        Where, $x$ and $y$ are two time series of length $T$.
+        where, $x$ and $y$ are two time series of length $T$.
 
     -   **Dynamic Time Warping (DTW)**: Technique that calculates an optimal match between two given sequences with certain restrictions. The sequences are "warped" non-linearly in the time dimension to determine a measure of their similarity independent of certain non-linear variations in the time dimension (Bishop, 2006).
 
@@ -115,15 +115,21 @@ This research analysis is divided into two main parts: a) the clustering of the 
 
         where $D_{t,s}$ represents the squared Euclidean distance between elements $x_t$ of series $x$ and $y_s$ of series $y$. The parameter $\gamma$ is a non-negative smoothing parameter that controls the softness of the minimum; larger values lead to a softer minimum.
 
-2.  **Kernel K-means**: This technique extends from the standard K-means clustering algorithm, designed to handle non-linear patterns in data through the use of kernel functions. This approach is particularly effective for complex datasets, such as time series, where the underlying patterns and relationships might not be linear or might exist in a higher-dimensional space (Soheily-Khah, Douzal-Chouakria, & Gaussier, 2016).
+2.  **Kernel K-means**: This technique extends from the standard K-means clustering algorithm, designed to handle non-linear patterns in data through the use of kernel functions. This approach is particularly effective for complex datasets, such as time series, where the underlying patterns and relationships might not be linear or might exist in a higher-dimensional space (Soheily-Khah, Douzal-Chouakria, & Gaussier, 2016). First, a kernel function is chosen to transform the time series data. Common choices include the Gaussian kernel, polynomial kernels, sigmoid kernels and the Global Alignment Kernel (GAK) (Dhillon, Guan, & Kulis, 2004). In this study GAK is used for its demonstrated efficacy in time series classification, and its advantages over the Euclidean distance in handling temporal distortions (Cuturi, 2011). The GAK kernel is defined as:
 
-    First, a kernel function is chosen to transform the time series data. Common choices include the Gaussian kernel (also known as the RBF kernel), polynomial kernels, and sigmoid kernels(Dhillon, Guan, & Kulis, 2004). In this study the Gaussian kernel is used for its ability to handle varied shapes of data and is defined as:
+    $$
+    K_{\text{GAK}}(X, Y) = \sum_{a, b} e^{-\frac{\|X_a - Y_b\|^2}{2\sigma^2}}
+    $$
 
-    $$K(x, y) = \exp\left(-\frac{\|x-y\|^2}{2\sigma^2}\right)$$where, $x$ and $y$ are two time series data points, $\|x-y\|^2$ represents the squared Euclidean distance between them, and $\sigma$ is a parameter that controls the width of the kernel. Each element $K_{ij}$ of the matrix represents the similarity between the $i$-th and $j$-th time series in the dataset.
+    where: $X_a$ and $Y_b$ are the elements (or subsequences) of the time series $X$ and $Y$, respectively. $\sigma$ is a scaling parameter that adjusts the flexibility of the alignment.The exponential function ensures that closer alignments contribute more significantly to the kernel value, providing robustness against noise and small misalignments.
 
     Furthermore, the goal of Kernel K-means is to partition the data into *k* clusters by minimizing the within-cluster distances in the feature space induced by the kernel. The objective function can be defined as:
 
-    $$\min \sum_{k=1}^K \sum_{i \in S_k} \|\phi(x_i) - \mu_k\|^2$$ Here, $\phi(x_i)$ denotes the mapping of data point $x_i$ into the feature space, and $\mu_k$ represents the mean of cluster $k$ in this space. The mean is computed as: $$\mu_k = \frac{1}{|S_k|} \sum_{j \in S_k} \phi(x_j)$$The similarity $s_{ij}$ between any two points $x_i$ and $x_j$ in the feature space is computed using the kernel function $K$, as: $$s_{ij} = K(x_i, x_j)$$ During the clustering process, each data point $x_i$ is assigned to the cluster $k$ that minimizes the squared distance to the cluster mean $\mu_k$, which is computed as: $$\text{Assign } x_i \text{ to cluster } k \text{ that minimizes } \|\phi(x_i) - \mu_k\|^2 = $$ $$ \sum_{j \in S_k} \left(K(x_i, x_i) - 2K(x_i, x_j) + K(x_j, x_j)\right)$$
+    $$
+    \min \sum_{k=1}^K \sum_{i \in S_k} \|\phi(x_i) - \mu_k\|^2
+    $$
+
+    Here, $\phi(x_i)$ denotes the mapping of data point $x_i$ into the feature space, and $\mu_k$ represents the mean of cluster $k$ in this space.
 
 ### Model Evaluation Metrics
 
@@ -139,7 +145,7 @@ where ( a ) is the mean intra-cluster distance, and ( b ) is the mean nearest-cl
 
     $$DB = \frac{1}{k} \sum_{i=1}^{k} \max_{i \neq j} \left(\frac{\sigma_i + \sigma_j}{d(c_i, c_j)}\right)$$
 
-    $\sigma$ is the average distance of all elements in cluster ( i ) to centroid ($c_i$), and ( d($c_i$, $c_j$) ) is the distance between centroids ( $c_i$ ) and ( $c_j$ ).
+    $\sigma$ is the average distance of all elements in cluster ( i ) to centroid ($c_i$), and d($c_i$, $c_j$) is the distance between centroids ( $c_i$ ) and ( $c_j$ ).
 
 ### Optimal Number of Clusters
 
@@ -159,7 +165,7 @@ To explore how the absence of corruption in the political, executive, legislativ
 
 ### **Selection of the optimal number of clusters**
 
-Figure 1 displays elbow method plots for various clustering methods, each charting the sum of squared distances against the number of clusters using different models. The Euclidean Distance method shows the most pronounced elbow at 8-9 clusters. For Dynamic Time Warping (DTW), the elbow occurs at 6-8 clusters. Soft-DTW has a clear elbow at 8 clusters, and Kernel K-means, using the Global Alignment Kernel (GAK), presents an elbow at 6 clusters. Based on these results, the clustering interval of 6-9 was chosen to test and evaluate the models. This range reflects a pragmatic approach to capturing the intrinsic clustering of the data while maintaining simplicity and interpretability of the results.
+Figure 1 displays elbow method plots for various clustering methods, each charting the sum of squared distances against the number of clusters. The Euclidean Distance method shows the most pronounced elbow at 8-9 clusters. For Dynamic Time Warping (DTW), the elbow occurs at 6-8 clusters. Soft-DTW has a clear elbow at 8 clusters, and Kernel K-means, using the Global Alignment Kernel (GAK), presents an elbow at 6 clusters. Based on these results, the clustering interval of 6-9 was chosen to test and evaluate the models. This range reflects a pragmatic approach to capturing the intrinsic clustering of the data while maintaining simplicity and interpretability of the results.
 
 ![](figures/clusters_final.png)
 
@@ -254,7 +260,7 @@ Furthermore, Figure 5 shows a heatmap with the correlation coefficients between 
 
 -   **Cluster 3**, composed by Georgia, exhibits a strong positive correlation with respect to law transparency (0.92). Health equality (0.51) and GDP per capita (0.58) also show moderately strong positive correlations.
 
--   **Cluster 7,** consisting of countries with high levels of absence of political corruption, shows moderately strong positive correlations, especially in law transparency (0.57) and access to justice for men (0.50)
+-   **Cluster 7,** consisting of countries with high levels of absence of political corruption, shows moderately strong positive correlations, especially in law transparency (0.57) and access to justice for men (0.50).
 
 These results suggest that, among the clusters, only cluster 3 demonstrate a strong and positive relationship between political corruption and law transparency.
 
@@ -264,7 +270,7 @@ These results suggest that, among the clusters, only cluster 3 demonstrate a str
 
 ### **Clustering Model Selection**
 
-As with political corruption, the Kernel K-means model with 7 clusters has been selected to implement for the executive, legislative and judicial corruption data. This decision is based on the performance of the model, which has outperformed the others in at least one of the key performance parameters - the Silhouette and Davies-Bouldin scores - and has demonstrated competitive or superior results in the remaining metric. The tables with the evaluation results for each branch of corruption are documented in the Appendix B in Tables 1B, 2B, and 3B.
+As with political corruption, the Kernel K-means model with 7 clusters has been selected for the executive, legislative and judicial corruption data. This decision is based on the performance of the model, which has outperformed the others in at least one of the key evaluation parameters - the Silhouette and Davies-Bouldin scores - and has demonstrated competitive or superior results in the remaining metric. The tables with the evaluation results for each branch of corruption are documented in the Appendix B in Tables 1B, 2B, and 3B.
 
 ### Executive Corruption
 
@@ -309,7 +315,7 @@ Cluster 2 is mainly composed by countries from Africa, Asia, Latin America, and 
 
 Furthermore, cluster 4 represents a broad mix of countries, mainly from Eastern Europe, Africa, Latin America, Southeast Asia, and Saudi Arabia. Russia, and the Solomon Islands are also included in this cluster. In the last years analysed, it shows a slightly upward trend from low absence of corruption in the executive power to moderate levels, which suggests some progress, although challenges remain. Cluster 5 portrays a different scenario, where predominantly Western and Northern European countries, along with some countries from North America, Oceania , Latin America, Southern Europe, and Eastern Asia show an enduring absence of corruption in the executive branch.
 
-Moreover, cluster 6, with countries from Southern Europe, the Middle East, East Asia, and Latin America and the Caribbean, exhibits relatively low levels of Executive corruption, which have remained fairly constant over time. Lastly, cluster 7, consisting mainly of Central Asia and Central African countries. This is the cluster with the highest corruption levels in the Executive, however, in recent years there has been a slow trend towards improvement.
+Moreover, cluster 6, with countries from Southern Europe, the Middle East, East Asia, and Latin America and the Caribbean, exhibits relatively low levels of Executive corruption, which have remained fairly constant over time. Lastly, cluster 7, consists mainly of Central Asia and Central African countries. This is the cluster with the highest corruption levels in the Executive, however, in recent years there has been a slow trend towards improvement.
 
 ![](figures/clusters_2.png){fig-align="center"}
 

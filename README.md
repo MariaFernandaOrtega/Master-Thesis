@@ -7,7 +7,7 @@ This repository contains the research work for a study that investigates the clu
 
 
 ## How to Use This Repository
-- To review the data, navigate to `/data`. 
+- To review the data, navigate to `/data`. Pleased note that all sources where obtain from international organizations that provide free acess to their data. 
 - For  the preprocessing code (e.g. import data, clean data, and get the final dataset), check `data_preprocessing.qmd`.
 - For the code for the models implementation and evaluation, check `model_code.ipynb`.
 - To see the visual results, explore the `/figures` directory.
@@ -16,5 +16,7 @@ This repository contains the research work for a study that investigates the clu
 
 ## Contributions
 This work is part of the master thesis of Maria Fernanda Ortega, for the Master of Data Science for Public Policy at the Hertie School.
+
+## Bibliography used for the code implementation
 
 --- 

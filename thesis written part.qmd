@@ -61,9 +61,9 @@ The literature on political corruption reveals that several variables significan
 
 On the other hand, Charron and Lapuente (2010) analyse the impact of political stability on corruption and conclude that stable political systems are associated with a reduction in corruption due to more effective governance mechanisms. Furthermore, Rothstein and Teorell (2008) highlight the crucial role of the quality of government institutions in the fight against corruption. They argue that effective, impartial and efficient institutions are essential to prevent corruption by maintaining high standards of public administration and accountability. Along those lines, Goel and Nelson (2011)elaborate on the importance of legal frameworks and their enforcement, noting that the perceived likelihood of being caught and punished is a crucial deterrent to corrupt practices, potentially more important than the severity of penalties.
 
-With respect to cultural influences on corruption, Husted (1999) investigates how social norms and values influence perceptions and behaviours of corruption and concludes that cultural dimensions can inhibit or facilitate corrupt activities depending on the social context. Similarly, Davis and Ruhe (2003) findings suggest that higher levels of perceived corruption correlate with cultural dimensions characterised by high power distance[^1], strong uncertainty avoidance and low individualism. They  also argue that 'masculine societies are perceived as more corrupt than more feminine societies.\' Along those lines, Uslaner (2008) emphasizes the role of societal trust and institutional fairness, arguing that higher levels of trust within a society and its institutions correlate with lower corruption levels.
+With respect to cultural influences on corruption, Husted (1999) investigates how social norms and values influence perceptions and behaviours of corruption and concludes that cultural dimensions can inhibit or facilitate corrupt activities depending on the social context. Similarly, Davis and Ruhe (2003) findings suggest that higher levels of perceived corruption correlate with cultural dimensions characterised by high power distance[^1], strong uncertainty avoidance and low individualism. They  also argue that 'masculine societies are perceived as more corrupt than more feminine societies.' Along those lines, Uslaner (2008) emphasizes the role of societal trust and institutional fairness, arguing that higher levels of trust within a society and its institutions correlate with lower corruption levels.
 
-[^1]: According to Davis and Ruhe (2023), \'power distance is the level of acceptance by a society of the unequal distribution of power in institutions.\'
+[^1]: According to Davis and Ruhe (2023), 'power distance is the level of acceptance by a society of the unequal distribution of power in institutions.'
 
 In addition to studies focused on the determinants of corruption, some recent work has utilized machine and deep learning models to analyse the levels of political corruption in various countries. For instance, Ghahari et al. (2021) use artificial neural network models and time series analysis to predict corruption levels in 113 countries between 2007 and 2017. Their analysis operates both globally and within specific groups classified by development-related attributes using nonlinear autoregressive neural network models with exogenous inputs (NARX). Their findings show that NARX models can reliably predict future levels of corruption, providing practical information for policymakers and organizations to refine anti-corruption measures. In addition, Paulus and Kristoufek (2015) use clustering techniques to analyse perceptions of corruption in 134 countries based on the Corruption Perceptions Index (CPI). They identify four main clusters showing different levels of corruption and economic development. The analysis reveals a strong correlation between economic development and perceptions of corruption, with wealthier countries tending to show lower levels of perceived corruption.
 
@@ -549,7 +549,7 @@ Lakshminarayanan, S. (2020). Application of Self-Organizing Maps on Time Series 
 
 Leitão, N. C. (2021). The Effects of Corruption, Renewable Energy, Trade and CO2 Emissions. *Economies*, *9*(2), Article 2. <https://doi.org/10.3390/economies9020062>
 
-Maharaj, E. A., D\'Urso, P., & Caiado, J. (2019). *Time Series Clustering and Classification*. Chapman and Hall/CRC. <https://doi.org/10.1201/9780429058264>
+Maharaj, E. A., D'Urso, P., & Caiado, J. (2019). *Time Series Clustering and Classification*. Chapman and Hall/CRC. <https://doi.org/10.1201/9780429058264>
 
 Maria, N. S. B., Susilowati, I., Fathoni, S., & Mafruhah, I. (2021). The Effect of Education and Macroeconomic Variables on Corruption Index in G20 Member Countries. *Economies*, *9*(1), Article 1. <https://doi.org/10.3390/economies9010023>
 
@@ -631,7 +631,7 @@ gdp\_growth & 0.007221 \\
 ### **Table 2A: Importance Scores of Variables in Assesing Political Corruption (2022**)
 
 \
-Table 2A presents the importance scores for various sociopolitical and economic variables[^6] in the year 2022, as determined by a random forest regression model. It highlights the variables that have the most substantial impact on the model\'s ability to assess political corruption. The indicators are ranked from highest to lowest importance score.
+Table 2A presents the importance scores for various sociopolitical and economic variables[^6] in the year 2022, as determined by a random forest regression model. It highlights the variables that have the most substantial impact on the model's ability to assess political corruption. The indicators are ranked from highest to lowest importance score.
 
 [^6]: Transparent laws with predictable enforcement (v2cltrnslw), Health equality (v2pehealth), GDP per capita (gdp_percapita), Freedom of expression (v2x_freexp_altinf), Access to justice for women (v2clacjstw), Access to justice for men (v2clacjstm), Educational equality (v2peedueq), Social class equality in respect for civil liberties (v2clacjust), Power distributed by socioeconomic position (v2pepwrses), Freedom of discussion for women (v2cldiscw), Freedom of discussion for men (v2cldiscm), Political Violence (v2caviol_2), Power distributed by gender (v2pepwrgen), Power distributed by social group (v2pepwrsoc), GDP growth annual percentage (gdp_growth), Civil society organizations repression (v2csreprss), Freedom of academic and cultural expression (v2clacfree), Government capacity to regulate online content (v2smregcap), Political Polarization (v2cacamps_2), and Government internet filtering capacity (v2smgovfilcap).
 
@@ -669,7 +669,7 @@ v2smgovfilcap & 0.007644 \\
 ```
 \newpage
 
-## Appendix B:  Performance Analysis of Clustering Models on Corruption Data across Executive, Legislative and Judicial branch
+## Appendix B: Performance Analysis of Clustering Models on Corruption Data across Executive, Legislative and Judicial branch
 
 ### **Table 1B: Clustering Performance Metrics for Executive Branch Corruption**
 
@@ -701,7 +701,6 @@ KernelKmeans gak & 9 & 0.365957 & 1.064142 \\
 \end{tabular}
 \end{table}
 ```
-
 ### **Table 2B: Clustering Performance Metrics for Legislative Branch Corruption**
 
 ```{=tex}
